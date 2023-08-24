@@ -36,7 +36,7 @@ namespace MyApi
 
             services.AddMinimalMvc();
 
-            services.AddElmahCore(Configuration, _siteSetting);
+            //services.AddElmahCore(Configuration, _siteSetting);
 
             services.AddJwtAuthentication(_siteSetting.JwtSettings);
 
@@ -68,7 +68,7 @@ namespace MyApi
 
             app.UseHttpsRedirection();
 
-            app.UseElmahCore(_siteSetting);
+            //app.UseElmahCore(_siteSetting);
 
             app.UseSwaggerAndUI();
 

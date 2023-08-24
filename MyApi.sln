@@ -1,19 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApi", "MyApi\MyApi.csproj", "{15CBFB10-7335-486D-ADC5-F3D97FC780F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApi", "MyApi\MyApi.csproj", "{15CBFB10-7335-486D-ADC5-F3D97FC780F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{924F7EA2-0F9C-4F6E-8595-1564F5B7B628}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{924F7EA2-0F9C-4F6E-8595-1564F5B7B628}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{A2F5D01C-0073-45A3-8EBF-F626A0CDC56A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{A2F5D01C-0073-45A3-8EBF-F626A0CDC56A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{034B9977-3261-4A11-AEA5-EEBEAEAAC31B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{034B9977-3261-4A11-AEA5-EEBEAEAAC31B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{21F0CCD3-227D-41DD-9FAE-F13EED9CE509}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{21F0CCD3-227D-41DD-9FAE-F13EED9CE509}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFramework", "WebFramework\WebFramework.csproj", "{231CC001-E10C-4BE1-AB77-17130DDDDFB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebFramework", "WebFramework\WebFramework.csproj", "{231CC001-E10C-4BE1-AB77-17130DDDDFB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{975D9DD2-5EA2-462A-8311-6AEB00171DA4}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

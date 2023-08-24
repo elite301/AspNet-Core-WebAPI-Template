@@ -105,7 +105,7 @@ namespace MyApi.Controllers.v1
         public virtual async Task<ApiResult<User>> Create(UserDto userDto, CancellationToken cancellationToken)
         {
             logger.LogError("متد Create فراخوانی شد");
-            HttpContext.RiseError(new Exception("متد Create فراخوانی شد"));
+            await HttpContext.RaiseError(new Exception("متد Create فراخوانی شد"));
 
             //var exists = await userRepository.TableNoTracking.AnyAsync(p => p.UserName == userDto.UserName);
             //if (exists)

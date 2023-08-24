@@ -31,8 +31,7 @@ namespace WebFramework.Configuration
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options
-                    .UseSqlServer(configuration.GetConnectionString("SqlServer"));
+                options.UseSqlite(configuration.GetConnectionString("Sqlite"));
                 //Tips
                 //Automatic client evaluation is no longer supported. This event is no longer generated.
                 //This line is no longer needed.

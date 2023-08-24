@@ -18,10 +18,10 @@ namespace WebFramework.CustomMapping
             services.AddAutoMapper(config =>
             {
                 config.AddCustomMappingProfile();
-                config.Advanced.BeforeSeal(configProvicer =>
-                {
-                    configProvicer.CompileMappings();
-                });
+                //config.Advanced.BeforeSeal(configProvicer =>
+                //{
+                //    configProvicer.CompileMappings();
+                //});
             }, assemblies);
 
             #region Deprecated (Use AutoMapper Instance instead)
