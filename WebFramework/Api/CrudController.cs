@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Azure;
 using Data.Repositories;
 using Entities;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -59,7 +61,7 @@ namespace WebFramework.Api
             return resultDto;
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public virtual async Task<ApiResult<TSelectDto>> Update(TKey id, TDto dto, CancellationToken cancellationToken)
         {
             var model = await Repository.GetByIdAsync(cancellationToken, id);
@@ -73,6 +75,26 @@ namespace WebFramework.Api
 
             return resultDto;
         }
+
+        [HttpPatch("{id}")]
+        public virtual async Task<ApiResult<TSelectDto>> Patch(TKey id, JsonPatchDocument<TDto> patchDoc, CancellationToken cancellationToken)
+        {
+            var model = await Repository.GetByIdAsync(cancellationToken, id);
+
+            var dto = Mapper.Map<TDto>(model);
+
+            patchDoc.ApplyTo(dto);
+
+            model = dto.ToEntity(Mapper, model);
+
+            await Repository.UpdateAsync(model, cancellationToken);
+
+            var resultDto = await Repository.TableNoTracking.ProjectTo<TSelectDto>(Mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync(p => p.Id.Equals(model.Id), cancellationToken);
+
+            return resultDto;
+        }
+
 
         [HttpDelete("{id}")]
         public virtual async Task<ApiResult> Delete(TKey id, CancellationToken cancellationToken)
