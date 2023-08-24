@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using Data.Repositories;
 using Entities;
 using Microsoft.AspNetCore.Identity;
@@ -20,8 +21,9 @@ namespace MyApi.Controllers.v2
             IJwtService jwtService,
             UserManager<User> userManager,
             RoleManager<Role> roleManager,
-            SignInManager<User> signInManager)
-            : base(userRepository, logger, jwtService, userManager, roleManager, signInManager)
+            SignInManager<User> signInManager,
+            IMapper mapper)
+            : base(userRepository, logger, jwtService, userManager, roleManager, signInManager, mapper)
         {
         }
 

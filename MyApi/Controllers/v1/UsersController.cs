@@ -15,9 +15,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using WebFramework.Api;
 using Microsoft.AspNetCore.Identity;
+using AutoMapper;
+using Entities.Roles;
 
 namespace MyApi.Controllers.v1
 {
+    [AllowAnonymous]
     [ApiVersion("1")]
     public class UsersController : BaseController
     {
@@ -27,9 +30,11 @@ namespace MyApi.Controllers.v1
         private readonly UserManager<User> userManager;
         private readonly RoleManager<Role> roleManager;
         private readonly SignInManager<User> signInManager;
+        private readonly IMapper mapper;
 
         public UsersController(IUserRepository userRepository, ILogger<UsersController> logger, IJwtService jwtService,
-            UserManager<User> userManager, RoleManager<Role> roleManager, SignInManager<User> signInManager)
+            UserManager<User> userManager, RoleManager<Role> roleManager, SignInManager<User> signInManager,
+            IMapper mapper)
         {
             this.userRepository = userRepository;
             this.logger = logger;
@@ -37,6 +42,7 @@ namespace MyApi.Controllers.v1
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -101,30 +107,16 @@ namespace MyApi.Controllers.v1
         [AllowAnonymous]
         public virtual async Task<ApiResult<User>> Create(UserDto userDto, CancellationToken cancellationToken)
         {
-            await HttpContext.RaiseError(new Exception("Create Failed"));
+            //await HttpContext.RaiseError(new Exception("Create Failed"));
 
-            //var exists = await userRepository.TableNoTracking.AnyAsync(p => p.UserName == userDto.UserName);
-            //if (exists)
-            //    return BadRequest("There is already user.");
+            var exists = await userRepository.TableNoTracking.AnyAsync(p => p.UserName == userDto.UserName);
+            if (exists)
+                return BadRequest("There is already user.");
 
+            var user = mapper.Map<User>(userDto);
 
-            var user = new User
-            {
-                Age = userDto.Age,
-                FullName = userDto.FullName,
-                Gender = userDto.Gender,
-                UserName = userDto.UserName,
-                Email = userDto.Email
-            };
-            var result = await userManager.CreateAsync(user, userDto.Password);
-
-            var result2 = await roleManager.CreateAsync(new Role
-            {
-                Name = "Admin",
-                Description = "admin role"
-            });
-
-            var result3 = await userManager.AddToRoleAsync(user, "Admin");
+            await userManager.CreateAsync(user, userDto.Password);
+            await userManager.AddToRoleAsync(user, UserRoles.Admin);
 
             //await userRepository.AddAsync(user, userDto.Password, cancellationToken);
             return user;

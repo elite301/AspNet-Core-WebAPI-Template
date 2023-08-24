@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.Roles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace Services.DataInitializer
 
         public void InitializeData()
         {
-            if (!roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())
+            if (!roleManager.RoleExistsAsync(UserRoles.Admin).GetAwaiter().GetResult())
             {
-                roleManager.CreateAsync(new Role { Name = "Admin", Description = "Admin role" }).GetAwaiter().GetResult();
+                roleManager.CreateAsync(new Role { Name = UserRoles.Admin, Description = "Admin role" }).GetAwaiter().GetResult();
             }
 
             if (!userManager.Users.AsNoTracking().Any())
@@ -35,7 +36,7 @@ namespace Services.DataInitializer
                 };
 
                 userManager.CreateAsync(user, "123456").GetAwaiter().GetResult();
-                userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult();
+                userManager.AddToRoleAsync(user, UserRoles.Admin).GetAwaiter().GetResult();
             }
         }
     }
