@@ -8,7 +8,6 @@ using WebFramework.Api;
 
 namespace MyApi.Controllers.v1
 {
-    [AllowAnonymous]
     public class PostsController : CrudController<PostDto, PostSelectDto, Post, Guid>
     {
         public PostsController(IRepository<Post> repository, IMapper mapper)
