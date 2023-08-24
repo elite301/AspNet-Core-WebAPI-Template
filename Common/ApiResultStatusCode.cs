@@ -4,25 +4,25 @@ namespace Common
 {
     public enum ApiResultStatusCode
     {
-        [Display(Name = "عملیات با موفقیت انجام شد")]
+        [Display(Name = "Success")]
         Success = 0,
 
-        [Display(Name = "خطایی در سرور رخ داده است")]
+        [Display(Name = "Server Error")]
         ServerError = 1,
 
-        [Display(Name = "پارامتر های ارسالی معتبر نیستند")]
+        [Display(Name = "Bad Request")]
         BadRequest = 2,
 
-        [Display(Name = "یافت نشد")]
+        [Display(Name = "Not Found")]
         NotFound = 3,
 
-        [Display(Name = "لیست خالی است")]
+        [Display(Name = "List Empty")]
         ListEmpty = 4,
 
-        [Display(Name = "خطایی در پردازش رخ داد")]
+        [Display(Name = "Server Logic Error")]
         LogicError = 5,
 
-        [Display(Name = "خطای احراز هویت")]
+        [Display(Name = "UnAuthorized")]
         UnAuthorized = 6
     }
 }

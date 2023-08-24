@@ -22,16 +22,18 @@ namespace Services.DataInitializer
             {
                 roleManager.CreateAsync(new Role { Name = "Admin", Description = "Admin role" }).GetAwaiter().GetResult();
             }
-            if (!userManager.Users.AsNoTracking().Any(p => p.UserName == "Admin"))
+
+            if (!userManager.Users.AsNoTracking().Any())
             {
                 var user = new User
                 {
                     Age = 25,
-                    FullName = "محمد جوادابراهیمی",
+                    FullName = "Arseniy Driapko",
                     Gender = GenderType.Male,
                     UserName = "admin",
-                    Email = "admin@site.com"
+                    Email = "driars0329@gmail.com"
                 };
+
                 userManager.CreateAsync(user, "123456").GetAwaiter().GetResult();
                 userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult();
             }

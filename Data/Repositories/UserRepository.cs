@@ -45,7 +45,7 @@ namespace Data.Repositories
         {
             var exists = await TableNoTracking.AnyAsync(p => p.UserName == user.UserName);
             if (exists)
-                throw new BadRequestException("نام کاربری تکراری است");
+                throw new BadRequestException("There is no user.");
 
             var passwordHash = SecurityHelper.GetSha256Hash(password);
             user.PasswordHash = passwordHash;

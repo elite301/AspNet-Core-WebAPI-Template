@@ -86,15 +86,12 @@ namespace MyApi.Controllers.v1
             //var user = await userRepository.GetByUserAndPass(username, password, cancellationToken);
             var user = await userManager.FindByNameAsync(tokenRequest.username);
             if (user == null)
-                throw new BadRequestException("نام کاربری یا رمز عبور اشتباه است");
+                throw new BadRequestException("There is no user.");
 
             var isPasswordValid = await userManager.CheckPasswordAsync(user, tokenRequest.password);
             if (!isPasswordValid)
-                throw new BadRequestException("نام کاربری یا رمز عبور اشتباه است");
+                throw new BadRequestException("Password is uncorrect.");
 
-
-            //if (user == null)
-            //    throw new BadRequestException("نام کاربری یا رمز عبور اشتباه است");
 
             var jwt = await jwtService.GenerateAsync(user);
             return new JsonResult(jwt);
@@ -104,12 +101,11 @@ namespace MyApi.Controllers.v1
         [AllowAnonymous]
         public virtual async Task<ApiResult<User>> Create(UserDto userDto, CancellationToken cancellationToken)
         {
-            logger.LogError("متد Create فراخوانی شد");
-            await HttpContext.RaiseError(new Exception("متد Create فراخوانی شد"));
+            await HttpContext.RaiseError(new Exception("Create Failed"));
 
             //var exists = await userRepository.TableNoTracking.AnyAsync(p => p.UserName == userDto.UserName);
             //if (exists)
-            //    return BadRequest("نام کاربری تکراری است");
+            //    return BadRequest("There is already user.");
 
 
             var user = new User

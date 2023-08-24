@@ -1,5 +1,6 @@
 ﻿using Data.Repositories;
 using Entities;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Services.DataInitializer
@@ -15,27 +16,13 @@ namespace Services.DataInitializer
 
         public void InitializeData()
         {
-            if (!repository.TableNoTracking.Any(p => p.Name == "دسته بندی اولیه 1"))
-            {
-                repository.Add(new Category
-                {
-                    Name = "دسته بندی اولیه 1"
-                });
-            }
-            if (!repository.TableNoTracking.Any(p => p.Name == "دسته بندی اولیه 2"))
-            {
-                repository.Add(new Category
-                {
-                    Name = "دسته بندی اولیه 2"
-                });
-            }
-            if (!repository.TableNoTracking.Any(p => p.Name == "دسته بندی اولیه 3"))
-            {
-                repository.Add(new Category
-                {
-                    Name = "دسته بندی اولیه 3"
-                });
-            }
+
+            if (repository.TableNoTracking.Any()) return;
+
+            repository.AddRange(new List<Category> {
+                new Category { Name = "Test Category 1" },
+                new Category { Name = "Test Category 2" }
+            });
         }
     }
 }

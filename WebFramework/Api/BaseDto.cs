@@ -9,7 +9,7 @@ namespace WebFramework.Api
         where TDto : class, new()
         where TEntity : class, IEntity<TKey>, new()
     {
-        [Display(Name = "ردیف")]
+        [Display(Name = "Key")]
         public TKey Id { get; set; }
 
         public TEntity ToEntity(IMapper mapper)

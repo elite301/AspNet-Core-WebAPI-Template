@@ -35,10 +35,10 @@ namespace Entities
 
     public enum GenderType
     {
-        [Display(Name = "مرد")]
+        [Display(Name = "Male")]
         Male = 1,
 
-        [Display(Name = "زن")]
+        [Display(Name = "Femail")]
         Female = 2
     }
 }
