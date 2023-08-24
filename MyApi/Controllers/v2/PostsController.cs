@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.Repositories;
 using Entities;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using MyApi.Models;
 using System;
@@ -61,6 +62,11 @@ namespace MyApi.Controllers.v2
         public override Task<ApiResult<PostSelectDto>> Update(Guid id, PostDto dto, CancellationToken cancellationToken)
         {
             return base.Update(id, dto, cancellationToken);
+        }
+
+        public override Task<ApiResult<PostSelectDto>> Patch(Guid id, JsonPatchDocument<PostDto> dto, CancellationToken cancellationToken)
+        {
+            return base.Patch(id, dto, cancellationToken);
         }
     }
 }
